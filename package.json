@@ -2,6 +2,7 @@
   "name": "my-port",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://Thiru2115.github.io/vite_portfolio/",
   "type": "module",
   "scripts": {
     "dev": "vite",
