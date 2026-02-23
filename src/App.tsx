@@ -6,12 +6,19 @@ import { Experience } from './components/Experience';
 import { Projects } from './components/Projects';
 import { Skills } from './components/Skills';
 import { Contact } from './components/Contact';
+import { CustomCursor } from './components/CustomCursor';
 
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
     });
 
     function raf(time: number) {
@@ -28,6 +35,7 @@ function App() {
 
   return (
     <main>
+      <CustomCursor />
       <Navbar />
       <Hero />
       <Skills />

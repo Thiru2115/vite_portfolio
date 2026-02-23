@@ -22,70 +22,80 @@ export const Projects = () => {
         {PROFILE.projects.map((project, i) => (
           <motion.div 
             key={project.title}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
+            transition={{ delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="glass-card"
             style={{ 
               display: 'flex', 
               flexDirection: 'column', 
-              gap: '1.5rem',
-              height: '100%'
+              gap: '2rem',
+              height: '100%',
+              padding: '3rem'
             }}
           >
-            <div style={{ 
-              width: '100%', 
-              height: '200px', 
-              background: 'linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1))',
-              borderRadius: '16px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'rgba(255,255,255,0.2)'
-            }}>
-              <Layers size={48} />
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+              <div style={{ 
+                width: '60px', 
+                height: '60px', 
+                background: 'rgba(99, 102, 241, 0.1)', 
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'var(--accent-primary)'
+              }}>
+                <Layers size={32} />
+              </div>
+              <a 
+                href="#" 
+                className="interactive"
+                style={{ 
+                  color: 'var(--text-secondary)',
+                  padding: '8px',
+                  borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid var(--glass-border)'
+                }}
+              >
+                <ExternalLink size={20} />
+              </a>
             </div>
 
             <div style={{ flex: 1 }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{project.title}</h3>
-              <p style={{ 
-                fontSize: '0.85rem', 
-                color: 'var(--accent-primary)', 
-                fontWeight: 600,
-                marginBottom: '1rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em'
-              }}>
-                {project.tech}
-              </p>
+              <h3 style={{ fontSize: '1.75rem', marginBottom: '1rem', fontWeight: 800 }}>{project.title}</h3>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                {project.tech.split(', ').map(t => (
+                  <span key={t} style={{ 
+                    fontSize: '0.7rem', 
+                    fontWeight: 700, 
+                    background: 'rgba(99, 102, 241, 0.05)', 
+                    color: 'var(--accent-primary)',
+                    padding: '4px 12px',
+                    borderRadius: '99px',
+                    border: '1px solid rgba(99, 102, 241, 0.1)'
+                  }}>
+                    {t}
+                  </span>
+                ))}
+              </div>
               <ul style={{ 
-                paddingLeft: '1.2rem', 
+                listStyle: 'none',
+                padding: 0, 
                 color: 'var(--text-secondary)', 
-                fontSize: '0.9rem',
+                fontSize: '0.95rem',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '0.5rem'
+                gap: '0.75rem'
               }}>
                 {project.highlights.map((h, idx) => (
-                  <li key={idx}>{h}</li>
+                  <li key={idx} style={{ display: 'flex', gap: '0.75rem' }}>
+                    <span style={{ color: 'var(--accent-primary)', fontWeight: 900 }}>→</span>
+                    {h}
+                  </li>
                 ))}
               </ul>
-            </div>
-
-            <div style={{ display: 'flex', gap: '1rem', marginTop: 'auto' }}>
-              <button 
-                style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem', 
-                  fontSize: '0.9rem',
-                  fontWeight: 600,
-                  color: 'var(--text-primary)'
-                }}
-              >
-                Case Study <ExternalLink size={14} />
-              </button>
             </div>
           </motion.div>
         ))}

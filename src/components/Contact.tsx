@@ -41,8 +41,8 @@ export const Contact = () => {
 
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-          gap: '2rem' 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+          gap: '2.5rem' 
         }}>
           {contactMethods.map((method, i) => (
             <motion.a
@@ -50,45 +50,48 @@ export const Contact = () => {
               href={method.href}
               target="_blank"
               rel="noreferrer"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-card"
+              transition={{ delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="glass-card interactive"
               style={{ 
                 display: 'flex', 
                 flexDirection: 'column', 
                 alignItems: 'center', 
-                gap: '1rem',
+                gap: '1.5rem',
                 textAlign: 'center',
-                padding: '3rem 2rem'
+                padding: '4rem 2rem'
               }}
             >
               <div style={{ 
-                width: '60px', 
-                height: '60px', 
-                borderRadius: '50%', 
+                width: '80px', 
+                height: '80px', 
+                borderRadius: '24px', 
                 background: `${method.color}15`, 
                 color: method.color,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginBottom: '1rem'
+                marginBottom: '1rem',
+                border: `1px solid ${method.color}30`,
+                boxShadow: `0 10px 30px ${method.color}10`
               }}>
                 {method.icon}
               </div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700 }}>{method.name}</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{method.value}</p>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.02em' }}>{method.name}</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', fontWeight: 500 }}>{method.value}</p>
               <div style={{ 
-                marginTop: '1rem', 
+                marginTop: '1.5rem', 
                 display: 'flex', 
                 alignItems: 'center', 
-                gap: '0.25rem',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                color: 'var(--accent-primary)'
+                gap: '0.5rem',
+                fontSize: '0.85rem',
+                fontWeight: 700,
+                color: 'var(--accent-primary)',
+                letterSpacing: '0.05em'
               }}>
-                MESSAGE ME <ArrowUpRight size={14} />
+                INITIATE CONTACT <ArrowUpRight size={16} />
               </div>
             </motion.a>
           ))}

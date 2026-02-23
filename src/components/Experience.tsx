@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { PROFILE } from '../constants/data';
-import { Calendar, MapPin } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 
 export const Experience = () => {
   return (
@@ -26,49 +26,59 @@ export const Experience = () => {
           zIndex: 0
         }} />
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
           {PROFILE.experience.map((exp, i) => (
             <motion.div 
               key={exp.company}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
-              style={{ position: 'relative', paddingLeft: '60px' }}
+              transition={{ delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              style={{ position: 'relative', paddingLeft: '80px' }}
             >
-              {/* Dot */}
+              {/* Refined Dot */}
               <div style={{ 
                 position: 'absolute', 
-                left: '12px', 
+                left: '11px', 
                 top: '0', 
-                width: '16px', 
-                height: '16px', 
+                width: '18px', 
+                height: '18px', 
                 borderRadius: '50%', 
                 background: 'var(--accent-primary)',
                 border: '4px solid var(--bg-primary)',
+                boxShadow: '0 0 20px rgba(99, 102, 241, 0.4)',
                 zIndex: 1
               }} />
 
               <div className="glass-card">
-                <div style={{ display: 'flex', justifyContent: 'between', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
                     <div>
-                        <h3 style={{ fontSize: '1.5rem', fontWeight: 700 }}>{exp.role}</h3>
-                        <p style={{ color: 'var(--accent-primary)', fontWeight: 600 }}>{exp.company}</p>
+                        <h3 style={{ fontSize: '1.75rem', fontWeight: 800, letterSpacing: '-0.02em' }}>{exp.role}</h3>
+                        <p style={{ color: 'var(--accent-primary)', fontWeight: 700, fontSize: '1.1rem' }}>{exp.company}</p>
+                    </div>
+                    <div style={{ textAlign: 'right' }}>
+                       <span style={{ 
+                         display: 'inline-flex', 
+                         alignItems: 'center', 
+                         gap: '0.5rem',
+                         background: 'rgba(255,255,255,0.03)',
+                         padding: '6px 16px',
+                         borderRadius: '99px',
+                         border: '1px solid var(--glass-border)',
+                         fontSize: '0.85rem',
+                         color: 'var(--text-secondary)'
+                       }}>
+                         <Calendar size={14} /> {exp.period}
+                       </span>
                     </div>
                 </div>
-                
-                <div style={{ display: 'flex', gap: '2rem', marginBottom: '1.5rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Calendar size={14} /> {exp.period}
-                  </span>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <MapPin size={14} /> {exp.location}
-                  </span>
-                </div>
 
-                <ul style={{ paddingLeft: '1.2rem', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+                <ul style={{ listStyle: 'none', padding: 0, color: 'var(--text-secondary)', fontSize: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   {exp.highlights.map((item, idx) => (
-                    <li key={idx} style={{ marginBottom: '0.75rem' }}>{item}</li>
+                    <li key={idx} style={{ display: 'flex', gap: '1rem', lineHeight: 1.5 }}>
+                      <span style={{ color: 'var(--accent-primary)', fontWeight: 900 }}>•</span>
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </div>
